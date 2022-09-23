@@ -1,30 +1,77 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Button.tscn" type="PackedScene" id=1]
+[ext_resource path="res://VT323-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Sprites/pixelFullSquare.png" type="Texture" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 128
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
 
 [node name="UI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color( 0.0392157, 0.0901961, 0.321569, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+stretch_mode = 1
+
+[node name="Title" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -331.5
+margin_top = 64.0
+margin_right = 331.5
+margin_bottom = 129.0
+custom_fonts/font = SubResource( 1 )
+text = "Retro Madness"
+uppercase = true
+
+[node name="ButtonContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -100.0
+margin_left = -128.0
 margin_top = -300.0
-margin_right = 100.0
 margin_bottom = -200.0
 
-[node name="Start" parent="VBoxContainer" instance=ExtResource( 1 )]
-margin_right = 200.0
+[node name="Start" parent="ButtonContainer" instance=ExtResource( 1 )]
+margin_right = 256.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 256, 64 )
+stretch_mode = 4
 
-[node name="Start2" parent="VBoxContainer" instance=ExtResource( 1 )]
-margin_top = 64.0
-margin_right = 200.0
-margin_bottom = 96.0
+[node name="RichTextLabel" parent="ButtonContainer/Start" index="0"]
+text = "Start
+"
 
-[node name="Start3" parent="VBoxContainer" instance=ExtResource( 1 )]
-margin_top = 128.0
-margin_right = 200.0
-margin_bottom = 160.0
+[node name="Options" parent="ButtonContainer" instance=ExtResource( 1 )]
+margin_top = 68.0
+margin_right = 256.0
+margin_bottom = 132.0
+rect_min_size = Vector2( 256, 64 )
+stretch_mode = 4
+
+[node name="RichTextLabel" parent="ButtonContainer/Options" index="0"]
+text = "Options
+"
+
+[node name="Exit" parent="ButtonContainer" instance=ExtResource( 1 )]
+margin_top = 136.0
+margin_right = 256.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 256, 64 )
+stretch_mode = 4
+
+[node name="RichTextLabel" parent="ButtonContainer/Exit" index="0"]
+text = "Exit"
+
+[editable path="ButtonContainer/Start"]
+[editable path="ButtonContainer/Options"]
+[editable path="ButtonContainer/Exit"]
