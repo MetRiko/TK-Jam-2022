@@ -19,6 +19,8 @@ func _process(delta):
 	var velocity_vec: Vector2 = get_linear_velocity()
 	velocity_vec = move_and_slide(velocity_vec, Vector2.UP)
 
+
+
 func update_direction_by_input(delta : float):
 	if Input.is_action_pressed("ui_right"):
 		var angle = rotationAngle * delta * 60.0
@@ -35,3 +37,12 @@ func get_linear_velocity():
 	linear_velocity.x = direction.x * velocity
 	linear_velocity.y = direction.y * velocity
 	return linear_velocity
+
+func defeat():
+	print("you lose")
+	pass
+
+
+func _on_CollisionDetector_area_entered(area):
+	if area.collision.name.match("Walls") or area.collision.name.match("*TetrisBlock*"):
+		defeat()

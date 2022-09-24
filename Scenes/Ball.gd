@@ -4,7 +4,7 @@ var velocity = 2.0
 var dirVec = Vector2.ZERO
 
 func castBall():
-	dirVec = Vector2(1,-1)
+	dirVec = Vector2(1,1)
 	dirVec.x = dirVec.x * rand_range(-1,1)*0.1
 
 func _physics_process(delta):
