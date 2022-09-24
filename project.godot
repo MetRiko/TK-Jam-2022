@@ -83,6 +83,8 @@ ui_home={
 2d_physics/layer_1="Ball"
 2d_physics/layer_2="Walls"
 2d_physics/layer_3="Snake"
+2d_physics/layer_4="Blocks"
+2d_physics/layer_5="Pickup"
 
 [physics]
 

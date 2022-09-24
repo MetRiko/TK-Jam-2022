@@ -1,3 +1,18 @@
-[gd_scene format=2]
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Snake.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Level.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/ParticleContainer.tscn" type="PackedScene" id=3]
 
 [node name="Root" type="Node2D"]
+position = Vector2( 14, 14 )
+
+[node name="Level" parent="." instance=ExtResource( 2 )]
+position = Vector2( 182, 109 )
+
+[node name="Snake" parent="." instance=ExtResource( 1 )]
+position = Vector2( 504, 164 )
+
+[node name="ParticleContainer" parent="." instance=ExtResource( 3 )]
+
+[editable path="Level"]

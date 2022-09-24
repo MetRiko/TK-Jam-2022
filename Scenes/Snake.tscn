@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Shooting.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/SnakeHead.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Snake.gd" type="Script" id=3]
+
+[node name="Snake" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Shooting" type="Node" parent="."]
+script = ExtResource( 1 )
+
+[node name="SnakeHead" parent="." instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.439216, 0.203922, 1 )
+
+[node name="Body" type="Node2D" parent="."]
