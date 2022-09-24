@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 8.0
 
-[node name="Ball" type="KinematicBody2D"]
+[node name="Ball" type="KinematicBody2D" groups=["ball"]]
 position = Vector2( 520, 504 )
 collision_mask = 14
 script = ExtResource( 1 )

@@ -8,7 +8,6 @@ var the_object = self
 
 var alive := true
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	$CollisionDetector.connect("body_entered", self, "_on_body_entered")
 
@@ -21,7 +20,13 @@ func _on_body_entered(body):
 func _movement_update(delta):
 	if alive:
 		var velocity_vec: Vector2 = get_linear_velocity()
-		velocity_vec = move_and_slide(velocity_vec, Vector2.UP)
+		velocity_vec = move_and_slide(velocity_vec, Vector2.ZERO)
+		var coll = get_slide_collision(0)
+		if coll:
+			if coll.collider.is_in_group("ball"):
+				var ball = coll.collider
+				ball.velocity = 5.0
+				ball.dirVec = direction
 
 func _rotation_update(delta : float):
 	if Input.is_action_pressed("ui_right"):
@@ -33,18 +38,9 @@ func _rotation_update(delta : float):
 		direction = direction.rotated(angle)
 		rotate(angle)
 
-
 func get_linear_velocity():
 	var linear_velocity: Vector2
 	linear_velocity.x = direction.x * velocity
 	linear_velocity.y = direction.y * velocity
 	return linear_velocity
 
-func defeat():
-	print("you lose")
-	pass
-
-
-func _on_CollisionDetector_area_entered(area):
-	if area.collision.name.match("Walls") or area.collision.name.match("*TetrisBlock*"):
-		defeat()
