@@ -1,15 +1,19 @@
 extends Node2D
 
-class Position:
+class SegmentData:
 	var x: float
 	var y: float
-	func _init(x: float, y: float):
+	var angle: float
+	func _init(x: float, y: float, angle: float):
 		self.x = x
 		self.y = y
+		self.angle = angle
 
-var positions: Dictionary = {}
-var rotations: Dictionary = {}
+var history: Dictionary = {}
 var frame_counter: int = 0
+
+var segments_gap := 25
+var speedMultiplier := 3
 
 var segmentScene = preload("res://Scenes/Segment.tscn")
 
@@ -17,13 +21,14 @@ onready var snakeHead = $SnakeHead
 onready var body = $Body
 
 func _ready():
-	pass
+	for i in range(3):
+		_add_segment()
 
 func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		_add_segment()
-	if event.is_action_pressed("ui_down"):
-		_remove_front_segment()
+	if event.is_action_pressed("ui_up"):
+		speedMultiplier = 6
+	if event.is_action_released("ui_up"):
+		speedMultiplier = 3
 
 func _add_segment():
 	var segment = segmentScene.instance()
@@ -36,37 +41,47 @@ func _remove_front_segment():
 #	snakeHead.direction = Vector2.LEFT.rotated(removed_segment.global_rotation)
 	removed_segment.queue_free()
 	body.remove_child(removed_segment)
-	for i in range(10):
+	for i in range(segments_gap):
 		var frame_to_remove = frame_counter - 1 - i
-		positions.erase(frame_to_remove)
-		rotations.erase(frame_to_remove)
-	frame_counter -= 10
+		history.erase(frame_to_remove)
+	frame_counter -= segments_gap
+
+#func _process(delta):
+#	if Input.is_action_pressed("ui_up"):
 
 func _physics_process(delta):
+	snakeHead._rotation_update(delta)
+	for i in range(speedMultiplier):
+		_single_update(delta)
+
+func _single_update(delta):
+	snakeHead._movement_update(delta)
+	
 	update_positions_with_head_bottom_position(frame_counter)
-	update_rotations_with_head_rotation(frame_counter)
 	
 	var i = 0
 	for segment in body.get_children():
 		i += 1
-		var segment_frame_idx = max(0, frame_counter + 1 - 10 * i)
-		segment.global_position.x = positions[segment_frame_idx].x
-		segment.global_position.y = positions[segment_frame_idx].y
-		segment.rotation = rotations[segment_frame_idx]
+		var segment_frame_idx = max(0, frame_counter + 1 - segments_gap * i)
+		var seg = history.get(segment_frame_idx, null)
+		if seg == null:
+			seg = history.values()[0]
+		segment.global_position.x = seg.x
+		segment.global_position.y = seg.y
+		segment.rotation = seg.angle
 	frame_counter += 1
 	
-	var max_allowed_history_size = (body.get_child_count() + 2) * 10
-	while positions.size() > max_allowed_history_size:
-		var key = frame_counter - positions.size() + 1
-		positions.erase(key)
-		rotations.erase(key)
+	var max_allowed_history_size = (body.get_child_count() + 1) * segments_gap
+	while history.size() > max_allowed_history_size:
+		var key = frame_counter - history.size()
+		history.erase(key)
+		
+#	print(history.keys())
 
 func update_positions_with_head_bottom_position(frame_count: int):
-	var position_obj = Position.new(
+	var position_obj = SegmentData.new(
 		snakeHead.global_position.x,
-		snakeHead.global_position.y
+		snakeHead.global_position.y,
+		snakeHead.rotation
 	)
-	positions[frame_count] = position_obj
-	
-func update_rotations_with_head_rotation(frame_count: int):
-	rotations[frame_count] = snakeHead.rotation
+	history[frame_count] = position_obj

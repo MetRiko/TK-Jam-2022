@@ -10,9 +10,6 @@ position = Vector2( 14, 14 )
 [node name="Level" parent="." instance=ExtResource( 2 )]
 position = Vector2( 182, 109 )
 
-[node name="Ball" parent="Level" index="1"]
-position = Vector2( 265, 15 )
-
 [node name="Snake" parent="." instance=ExtResource( 1 )]
 position = Vector2( 504, 164 )
 

@@ -1,14 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Sprites/block.png" type="Texture" id=1]
-[ext_resource path="res://Scenes/Segment.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
 
-[node name="Segment" type="KinematicBody2D" groups=["segments"]]
+[node name="Segment" type="KinematicBody2D" groups=["segments", "snake"]]
 collision_layer = 4
-script = ExtResource( 2 )
+collision_mask = 0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

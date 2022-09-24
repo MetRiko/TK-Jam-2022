@@ -8,6 +8,7 @@ radius = 8.0
 
 [node name="Ball" type="KinematicBody2D"]
 position = Vector2( 520, 504 )
+collision_mask = 14
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
