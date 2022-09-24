@@ -11,3 +11,4 @@ func getLevel():
 
 func addBall(ball):
 	getLevel().addBall(ball)
+
