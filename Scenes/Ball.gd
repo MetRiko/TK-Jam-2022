@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-var velocity = 2.5
+var velocity = 2.0
 var dirVec = Vector2.ZERO
 
 func castBall():

@@ -3,6 +3,10 @@ extends KinematicBody2D
 var pos_offset := Vector2()
 var block_id = 0
 
+const particles = preload("res://Tetris/Particles2D.tscn")
+
+var blockColor
+
 var blocks_offsets := {}
 var blocks := []
 
@@ -22,6 +26,11 @@ func update_variants():
 func destroy():
 	if blocks[block_id] == null:
 		return
+	var part = particles.instance()
+	Game.addParticles(part)
+	part.global_position = global_position + Vector2(8,8)
+	part.modulate = blockColor
+	part.emitting = true
 	blocks_offsets.erase(_hash_idx(pos_offset))
 	blocks[block_id] = null
 	update_variants()
@@ -69,3 +78,4 @@ func _hash_idx(idx : Vector2) -> int:
 
 func change_color(color : Color) -> void:
 	$Sprite.modulate = color
+	blockColor = color
