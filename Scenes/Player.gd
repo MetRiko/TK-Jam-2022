@@ -8,7 +8,6 @@ var forward_vector = Vector2(0,1)
 var the_object = self
 var orientation_global = (the_object.to_global( forward_vector ) - the_object.global_position)
 
-signal rotate(vec)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,17 +15,19 @@ func _ready():
 
 
 func _process(delta):
-	update_direction_by_input()
+	update_direction_by_input(delta)
 	var velocity_vec: Vector2 = get_linear_velocity()
 	velocity_vec = move_and_slide(velocity_vec, Vector2.UP)
 
-func update_direction_by_input():
+func update_direction_by_input(delta : float):
 	if Input.is_action_pressed("ui_right"):
-		direction = direction.rotated(rotationAngle)
-		self.rotate(rotationAngle)
+		var angle = rotationAngle * delta * 60.0
+		direction = direction.rotated(angle)
+		rotate(angle)
 	if Input.is_action_pressed("ui_left"):
-		direction = direction.rotated(-rotationAngle)
-		self.rotate(-rotationAngle)
+		var angle = -rotationAngle * delta * 60.0
+		direction = direction.rotated(angle)
+		rotate(angle)
 
 
 func get_linear_velocity():

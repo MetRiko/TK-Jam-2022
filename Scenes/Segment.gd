@@ -21,5 +21,3 @@ func update_rotation_by_input():
 		self.rotate(rotationAngle)
 	if Input.is_action_pressed("ui_left"):
 		self.rotate(-rotationAngle)
-
-

@@ -7,6 +7,7 @@
 extents = Vector2( 8, 8 )
 
 [node name="Segment" type="KinematicBody2D" groups=["segments"]]
+collision_layer = 2
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -16,4 +17,3 @@ texture = ExtResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -8 )
 shape = SubResource( 1 )
-disabled = true
