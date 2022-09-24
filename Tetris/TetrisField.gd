@@ -87,15 +87,21 @@ func get_blocks_group_fit_height(idx_x : int, blocks_idxes : Array) -> int:
 
 func put_blocks_group(idx_x : int, start_height : int, blocks_idxes : Array) -> void:
 	var color = Color(randf() * 0.5 + 0.5, randf() * 0.5 + 0.5, randf() * 0.5 + 0.5, 1.0)
+	var in_blocks = []
+	var in_offsets = {}
+	var latest_block = null
 	for idx in blocks_idxes:
 		var block = block_scene.instance()
 		blocks.add_child(block)
-		block.setup(idx, blocks_idxes)
+		block.setup(idx, in_offsets, in_blocks)
 		block.change_color(color)
+		latest_block = block
 		var target_idx = Vector2(idx_x + idx.x, start_height + idx.y)
 		block.position = idx_to_pos(target_idx)
 		height_level_per_column[target_idx.x] = max(height_level_per_column[idx_x], target_idx.y)
-
+	latest_block.update_variants()
+	
+	
 func put_random_blocks_group_below():
 	if current_max_height * block_size.y > $BottomLimit.position.y + offset_y - start_pos.y:
 		return

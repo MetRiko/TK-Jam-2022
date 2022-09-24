@@ -1,14 +1,38 @@
 extends KinematicBody2D
 
 var pos_offset := Vector2()
+var block_id = 0
 
 var blocks_offsets := {}
+var blocks := []
 
-func setup(pos_offset : Vector2, blocks_group : Array) -> void:
+func setup(pos_offset : Vector2, in_blocks_offsets : Dictionary, in_blocks : Array) -> void:
+	block_id = in_blocks.size()
 	self.pos_offset = pos_offset
-	for offset in blocks_group:
-		blocks_offsets[_hash_idx(offset)] = null
-	_update_variant()
+	blocks_offsets = in_blocks_offsets
+	in_blocks_offsets[_hash_idx(pos_offset)] = true
+	blocks = in_blocks
+	in_blocks.append(self)
+	
+func update_variants():
+	for block in blocks:
+		if block != null:
+			block._update_variant()
+	
+func destroy():
+	if blocks[block_id] == null:
+		return
+	blocks_offsets.erase(_hash_idx(pos_offset))
+	blocks[block_id] = null
+	update_variants()
+	queue_free()
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			var rect = Rect2(global_position, Vector2.ONE * 16)
+			if rect.has_point(get_global_mouse_position()):
+				destroy()
 	
 func check_variant_id() -> int:
 	var up := int(blocks_offsets.has(_hash_idx(pos_offset + Vector2.UP))) * 1
