@@ -1,52 +1,39 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/Button.tscn" type="PackedScene" id=1]
-[ext_resource path="res://VT323-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Sprites/pixelFullSquare.png" type="Texture" id=3]
 [ext_resource path="res://UI.tres" type="Theme" id=4]
 [ext_resource path="res://Sprites/pixelVolumeSymbol.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/pixelCrossSymbol.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/Volume.gd" type="Script" id=7]
-[ext_resource path="res://Sprites/buttonSprite.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/pixelCircle.png" type="Texture" id=8]
 
-[sub_resource type="Shader" id=2]
-code = "shader_type canvas_item;
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.232456, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.451754, 0.56089 ), 0.0, 0.0, 0, 0, Vector2( 0.688596, 0.497253 ), 0.0, 0.0, 0, 0, Vector2( 0.864035, 0.555445 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-uniform vec4 bg_color: hint_color;
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
 
-float rand(vec2 st) {
-    return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
-}
+[sub_resource type="Curve" id=5]
+_data = [ Vector2( 0, 1 ), 0.0, 0.157163, 0, 0, Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.644737, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-void fragment() {
-	float size = 1000.0;
-	float prob = 0.9;
-	vec2 pos = floor(1.0 / size * FRAGCOORD.xy);
-	float color = 0.0;
-	float starValue = rand(pos);
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
 
-	if (starValue > prob)
-	{
-		vec2 center = size * pos + vec2(size, size) * 0.5;
-		float t = 0.9 + 0.2 * sin(TIME * 8.0 + (starValue - prob) / (1.0 - prob) * 45.0);
-		color = 1.0 - distance(FRAGCOORD.xy, center) / (0.5 * size);
-		color = color * t / (abs(FRAGCOORD.y - center.y)) * t / (abs(FRAGCOORD.x - center.x));
-	}
-	else if (rand(SCREEN_UV.xy / 20.0) > 0.996)
-	{
-		float r = rand(SCREEN_UV.xy);
-		color = r * (0.85 * sin(TIME * (r * 5.0) + 720.0 * r) + 0.95);
-	}
-	COLOR = vec4(vec3(color),1.0) + bg_color;
-}"
-
-[sub_resource type="ShaderMaterial" id=3]
-shader = SubResource( 2 )
-shader_param/bg_color = null
-
-[sub_resource type="DynamicFont" id=1]
-size = 128
-font_data = ExtResource( 2 )
+[sub_resource type="ParticlesMaterial" id=4]
+trail_divisor = 2
+trail_size_modifier = SubResource( 6 )
+emission_shape = 1
+emission_sphere_radius = 0.01
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 301.57
+angular_velocity = -720.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_curve = SubResource( 3 )
 
 [node name="UI" type="CanvasLayer"]
 
@@ -55,31 +42,28 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="TextureRect" type="TextureRect" parent="UI"]
-material = SubResource( 3 )
+modulate = Color( 0, 0, 0, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 3 )
 stretch_mode = 1
 
-[node name="TextureRect2" type="TextureRect" parent="UI"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -360.0
-margin_top = 48.0
-margin_right = 360.0
-margin_bottom = 304.0
-texture = ExtResource( 8 )
-stretch_mode = 5
+[node name="Panel" type="Panel" parent="UI"]
+margin_left = 355.0
+margin_top = 74.0
+margin_right = 943.0
+margin_bottom = 190.0
+theme = ExtResource( 4 )
 
 [node name="Title" type="Label" parent="UI"]
 self_modulate = Color( 0, 0, 0, 1 )
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -331.5
-margin_top = 64.0
-margin_right = 331.5
-margin_bottom = 193.0
-custom_fonts/font = SubResource( 1 )
+margin_left = -323.0
+margin_top = 69.0
+margin_right = 340.0
+margin_bottom = 198.0
+theme = ExtResource( 4 )
 text = "Tetroverse"
 align = 1
 valign = 1
@@ -99,11 +83,16 @@ margin_bottom = -200.0
 margin_right = 256.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 256, 64 )
+theme = ExtResource( 4 )
 stretch_mode = 4
 
 [node name="RichTextLabel" parent="UI/ButtonContainer/Start" index="0"]
 modulate = Color( 0, 0, 0, 1 )
 self_modulate = Color( 0, 0, 0, 1 )
+margin_left = -81.0
+margin_top = -27.5
+margin_right = 99.0
+margin_bottom = 87.5
 text = "Start
 "
 
@@ -143,6 +132,13 @@ texture_disabled = ExtResource( 6 )
 texture_focused = ExtResource( 6 )
 expand = true
 stretch_mode = 5
+
+[node name="Particles2D" type="Particles2D" parent="UI"]
+position = Vector2( 635, 376 )
+amount = 500
+lifetime = 3.0
+process_material = SubResource( 4 )
+texture = ExtResource( 8 )
 
 [connection signal="value_changed" from="UI/Volume" to="UI/Volume" method="_on_Volume_value_changed"]
 
