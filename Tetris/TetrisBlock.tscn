@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Tetris/blocks.png" type="Texture" id=1]
 [ext_resource path="res://Tetris/TetrisBlock.gd" type="Script" id=2]
@@ -6,6 +6,9 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
+
+[sub_resource type="Animation" id=4]
+length = 0.001
 
 [sub_resource type="Animation" id=3]
 resource_name = "shiny_effect"
@@ -38,6 +41,7 @@ hframes = 15
 texture = ExtResource( 3 )
 centered = false
 hframes = 15
+frame = 14
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -45,4 +49,5 @@ position = Vector2( 8, 8 )
 shape = SubResource( 1 )
 
 [node name="Anim" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 4 )
 anims/shiny_effect = SubResource( 3 )

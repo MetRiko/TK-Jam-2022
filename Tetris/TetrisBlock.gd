@@ -37,6 +37,10 @@ func destroy():
 	if blocks[block_id] == null:
 		return
 	var part = particles.instance()
+	if $ShinyEffect.visible == true:
+		Game.getLevel().getCounter().addPoints(100)
+	else:
+		 Game.getLevel().getCounter().addPoints(10)
 	Game.addParticles(part)
 	part.global_position = global_position + Vector2(8,8)
 	part.modulate = blockColor
