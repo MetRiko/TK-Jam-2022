@@ -6,7 +6,6 @@ var velocity: int = 100
 var rotationAngle: float = deg2rad(3)
 var forward_vector = Vector2(0,1)
 var the_object = self
-var orientation_global = (the_object.to_global( forward_vector ) - the_object.global_position)
 
 
 # Called when the node enters the scene tree for the first time.
