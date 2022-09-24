@@ -101,6 +101,10 @@ func put_blocks_group(idx_x : int, start_height : int, blocks_idxes : Array) -> 
 		height_level_per_column[target_idx.x] = max(height_level_per_column[idx_x], target_idx.y)
 	latest_block.update_variants()
 	
+	var chance = randf()
+	if chance < 0.2:
+		in_blocks[randi() % in_blocks.size()].add_bonus(null)
+	
 	
 func put_random_blocks_group_below():
 	if current_max_height * block_size.y > $BottomLimit.position.y + offset_y - start_pos.y:
@@ -130,7 +134,7 @@ func put_random_blocks_group_below():
 	put_blocks_group(target_idx_x, min_height, blocks_group)
 	var block_height := 0
 	for height in height_level_per_column:
-		block_height = max(block_height, height)
+		block_height = max(block_height, int(height))
 	block_height += 1
 	current_max_height = max(current_max_height, block_height)
 		

@@ -1,10 +1,43 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Tetris/blocks.png" type="Texture" id=1]
 [ext_resource path="res://Tetris/TetrisBlock.gd" type="Script" id=2]
+[ext_resource path="res://Tetris/shiny_effect.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ShinyEffect:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "shiny_effect"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("ShinyEffect:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 14, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+}
 
 [node name="TetrisBlock" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -14,7 +47,16 @@ texture = ExtResource( 1 )
 centered = false
 hframes = 15
 
+[node name="ShinyEffect" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+centered = false
+hframes = 15
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 8, 8 )
 shape = SubResource( 1 )
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/shiny_effect = SubResource( 3 )

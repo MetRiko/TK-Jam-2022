@@ -6,6 +6,11 @@ var block_id = 0
 var blocks_offsets := {}
 var blocks := []
 
+var bonus = null
+
+func _ready():
+	$ShinyEffect.visible = false
+
 func setup(pos_offset : Vector2, in_blocks_offsets : Dictionary, in_blocks : Array) -> void:
 	block_id = in_blocks.size()
 	self.pos_offset = pos_offset
@@ -13,6 +18,11 @@ func setup(pos_offset : Vector2, in_blocks_offsets : Dictionary, in_blocks : Arr
 	in_blocks_offsets[_hash_idx(pos_offset)] = true
 	blocks = in_blocks
 	in_blocks.append(self)
+	
+func add_bonus(bonus):
+	self.bonus = bonus
+	$ShinyEffect.visible = true
+	$Anim.play("shiny_effect")
 	
 func update_variants():
 	for block in blocks:
@@ -69,3 +79,4 @@ func _hash_idx(idx : Vector2) -> int:
 
 func change_color(color : Color) -> void:
 	$Sprite.modulate = color
+	$ShinyEffect.modulate = color
