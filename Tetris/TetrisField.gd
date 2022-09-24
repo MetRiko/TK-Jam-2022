@@ -90,6 +90,7 @@ func put_blocks_group(idx_x : int, start_height : int, blocks_idxes : Array) -> 
 	for idx in blocks_idxes:
 		var block = block_scene.instance()
 		blocks.add_child(block)
+		block.setup(idx, blocks_idxes)
 		block.change_color(color)
 		var target_idx = Vector2(idx_x + idx.x, start_height + idx.y)
 		block.position = idx_to_pos(target_idx)
