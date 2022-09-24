@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
 
-[node name="SnakeHead" type="KinematicBody2D"]
+[node name="SnakeHead" type="KinematicBody2D" groups=["head"]]
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -14,3 +14,6 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
+
+[node name="HeadBottom" type="Position2D" parent="." groups=["head_bottom"]]
+position = Vector2( 0, 8 )
