@@ -49,7 +49,7 @@ func _physics_process(delta):
 func _ready():
 	randomize()
 	start_pos = blocks.position
-	_set_columns_amount(20)
+	_set_columns_amount(31)
 	$SpawnTimer.connect("timeout", self, "put_random_blocks_group_below")
 
 func _set_columns_amount(amount : int) -> void:
