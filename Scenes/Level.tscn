@@ -14,7 +14,7 @@ extents = Vector2( 64, 220 )
 extents = Vector2( 320, 16 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 64, 220 )
+extents = Vector2( 64, 224 )
 
 [node name="Level" type="Node2D"]
 
@@ -55,7 +55,7 @@ position = Vector2( 320, 384 )
 shape = SubResource( 4 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls"]
-position = Vector2( 576, 180 )
+position = Vector2( 576, 176 )
 shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
