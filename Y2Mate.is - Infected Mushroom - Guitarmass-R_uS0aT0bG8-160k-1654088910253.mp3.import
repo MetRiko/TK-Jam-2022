@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Y2Mate.is - Infected Mushroom - Guitarmass-R_uS0aT0bG8-160k-1654088910253.mp3-c8142aba8d96dd35459ee0309b7e71c8.mp3str"
+
+[deps]
+
+source_file="res://Y2Mate.is - Infected Mushroom - Guitarmass-R_uS0aT0bG8-160k-1654088910253.mp3"
+dest_files=[ "res://.import/Y2Mate.is - Infected Mushroom - Guitarmass-R_uS0aT0bG8-160k-1654088910253.mp3-c8142aba8d96dd35459ee0309b7e71c8.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
