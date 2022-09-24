@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Ball.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/pixelFullSquare.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/pixelCircle.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 8.0
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 523, 8.5 )
+
+[node name="Level" type="Node2D"]
+
+[node name="Ball" type="KinematicBody2D" parent="."]
+position = Vector2( 520, 504 )
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Ball"]
+texture = ExtResource( 3 )
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2( 512, -1.5 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Walls/CollisionShape2D"]
+position = Vector2( -3.76105e-05, 0 )
+scale = Vector2( 65.375, 1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+position = Vector2( 0, 512 )
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Walls/CollisionShape2D2"]
+position = Vector2( -3.76105e-05, 0 )
+scale = Vector2( 65.375, 1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls"]
+position = Vector2( 1024, 512 )
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Walls/CollisionShape2D3"]
+position = Vector2( -3.76105e-05, 0 )
+scale = Vector2( 65.375, 1 )
+texture = ExtResource( 2 )
