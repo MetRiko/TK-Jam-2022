@@ -1,9 +1,21 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Y2Mate.is - Infected Mushroom - Guitarmass-R_uS0aT0bG8-160k-1654088910253.mp3" type="AudioStream" id=1]
+[ext_resource path="res://Scripts/AudioPlayer.gd" type="Script" id=2]
+[ext_resource path="res://Sounds/bounce2.wav" type="AudioStream" id=3]
+[ext_resource path="res://Sounds/ball lost.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/snake bounce.wav" type="AudioStream" id=5]
+[ext_resource path="res://Sounds/bounce.wav" type="AudioStream" id=6]
+[ext_resource path="res://Sounds/new ball.wav" type="AudioStream" id=7]
 
 [node name="AudioPlayer" type="Node"]
+script = ExtResource( 2 )
+streamList = [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 5 ) ]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+autoplay = true
+
+[node name="EffectsAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
 autoplay = true
