@@ -2,8 +2,12 @@ extends Node2D
 
 const block_scene = preload("res://Tetris/TetrisBlock.tscn")
 const block_size := Vector2(16, 16)
+onready var blocks = $Blocks
 
+var offset_y := 0.0
+var start_pos := Vector2()
 var height_level_per_column := [0, 0, 0, 0, 0, 0]
+var current_max_height = 0
 
 const blocks_groups = [
 	#Cube
@@ -38,9 +42,15 @@ const blocks_groups = [
 	[Vector2(0,0), Vector2(0,1), Vector2(1,1), Vector2(2,1)],
 ]
 
+func _physics_process(delta):
+	offset_y += 20.0 * delta
+	blocks.position.y = start_pos.y - offset_y
+
 func _ready():
 	randomize()
+	start_pos = blocks.position
 	_set_columns_amount(20)
+	$SpawnTimer.connect("timeout", self, "put_random_blocks_group_below")
 
 func _set_columns_amount(amount : int) -> void:
 	height_level_per_column.resize(amount)
@@ -79,13 +89,16 @@ func put_blocks_group(idx_x : int, start_height : int, blocks_idxes : Array) -> 
 	var color = Color(randf() * 0.5 + 0.5, randf() * 0.5 + 0.5, randf() * 0.5 + 0.5, 1.0)
 	for idx in blocks_idxes:
 		var block = block_scene.instance()
-		add_child(block)
+		blocks.add_child(block)
 		block.change_color(color)
 		var target_idx = Vector2(idx_x + idx.x, start_height + idx.y)
-		block.global_position = idx_to_pos(target_idx)
+		block.position = idx_to_pos(target_idx)
 		height_level_per_column[target_idx.x] = max(height_level_per_column[idx_x], target_idx.y)
 
 func put_random_blocks_group_below():
+	if current_max_height * block_size.y > $BottomLimit.position.y + offset_y - start_pos.y:
+		return
+	
 #	var idx_x = randi() % height_level_per_column.size()
 #	var blocks_group = [Vector2(0,0), Vector2(1,0), Vector2(0,1), Vector2(0,2)]
 	var blocks_group = blocks_groups[randi() % blocks_groups.size()]
@@ -108,6 +121,11 @@ func put_random_blocks_group_below():
 #	var target_height = get_blocks_group_fit_height(target_idx_x, blocks_group)
 #	if target_height != -1:
 	put_blocks_group(target_idx_x, min_height, blocks_group)
+	var block_height := 0
+	for height in height_level_per_column:
+		block_height = max(block_height, height)
+	block_height += 1
+	current_max_height = max(current_max_height, block_height)
 		
 #	if can_put_blocks_group_below(idx_x, blocks_group):
 
@@ -120,8 +138,8 @@ func _input(event):
 
 func put_block_below(idx_x : int) -> void:
 	var block = block_scene.instance()
-	add_child(block)
-	block.global_position = idx_to_pos(Vector2(idx_x, height_level_per_column[idx_x]))
+	blocks.add_child(block)
+	block.position = idx_to_pos(Vector2(idx_x, height_level_per_column[idx_x]))
 	height_level_per_column[idx_x] += 1
 	
 func put_random_block() -> void:
@@ -129,7 +147,7 @@ func put_random_block() -> void:
 	put_block_below(idx_x)
 	
 func idx_to_pos(idx : Vector2) -> Vector2:
-	return global_position + idx * block_size
+	return idx * block_size
 	
 func pos_to_idx(pos : Vector2):
 	pass
