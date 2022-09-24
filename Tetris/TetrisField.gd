@@ -43,13 +43,13 @@ const blocks_groups = [
 ]
 
 func _physics_process(delta):
-	offset_y += 20.0 * delta
+	offset_y += 5.0 * delta
 	blocks.position.y = start_pos.y - offset_y
 
 func _ready():
 	randomize()
 	start_pos = blocks.position
-	_set_columns_amount(31)
+	_set_columns_amount(24)
 	$SpawnTimer.connect("timeout", self, "put_random_blocks_group_below")
 
 func _set_columns_amount(amount : int) -> void:
@@ -140,12 +140,12 @@ func put_random_blocks_group_below():
 		
 #	if can_put_blocks_group_below(idx_x, blocks_group):
 
-func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		put_random_block()
-	if event.is_action_pressed("ui_down"):
-		put_random_blocks_group_below()
-#		print(height_level_per_column)
+#func _input(event):
+#	if event.is_action_pressed("ui_accept"):
+#		put_random_block()
+#	if event.is_action_pressed("ui_down"):
+#		put_random_blocks_group_below()
+##		print(height_level_per_column)
 
 func put_block_below(idx_x : int) -> void:
 	var block = block_scene.instance()

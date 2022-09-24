@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 
-var direction: Vector2 = Vector2.UP
+var direction: Vector2 = Vector2.DOWN
 var velocity: int = 100
 var rotationAngle: float = deg2rad(3)
 var forward_vector = Vector2(0,1)

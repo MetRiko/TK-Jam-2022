@@ -13,6 +13,7 @@ var frame_counter: int = 0
 
 var segmentScene = preload("res://Scenes/Segment.tscn")
 
+onready var snakeHead = $SnakeHead
 
 func _ready():
 	pass
@@ -47,13 +48,11 @@ func _physics_process(delta):
 		rotations.erase(key)
 
 func update_positions_with_head_bottom_position(frame_count: int):
-	var head_bottom = get_tree().get_nodes_in_group("head_bottom")[0]
 	var position_obj = Position.new(
-		head_bottom.global_position.x,
-		head_bottom.global_position.y
+		snakeHead.global_position.x,
+		snakeHead.global_position.y
 	)
 	positions[frame_count] = position_obj
 	
 func update_rotations_with_head_rotation(frame_count: int):
-	var head = get_tree().get_nodes_in_group("head")[0]
-	rotations[frame_count] = head.rotation
+	rotations[frame_count] = snakeHead.rotation
