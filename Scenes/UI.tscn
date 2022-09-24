@@ -1,12 +1,19 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/Button.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Vermin Vibes 1989.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Sprites/pixelFullSquare.png" type="Texture" id=3]
 [ext_resource path="res://UI.tres" type="Theme" id=4]
 [ext_resource path="res://Sprites/pixelVolumeSymbol.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/pixelCrossSymbol.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/Volume.gd" type="Script" id=7]
 [ext_resource path="res://Sprites/pixelCircle.png" type="Texture" id=8]
+
+[sub_resource type="DynamicFont" id=7]
+size = 168
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
 
 [sub_resource type="Curve" id=2]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.232456, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.451754, 0.56089 ), 0.0, 0.0, 0, 0, Vector2( 0.688596, 0.497253 ), 0.0, 0.0, 0, 0, Vector2( 0.864035, 0.555445 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
@@ -43,27 +50,22 @@ anchor_bottom = 1.0
 
 [node name="TextureRect" type="TextureRect" parent="UI"]
 modulate = Color( 0, 0, 0, 1 )
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_right = 1280.0
+margin_bottom = 740.0
 texture = ExtResource( 3 )
 stretch_mode = 1
 
-[node name="Panel" type="Panel" parent="UI"]
-margin_left = 355.0
-margin_top = 74.0
-margin_right = 943.0
-margin_bottom = 190.0
-theme = ExtResource( 4 )
-
 [node name="Title" type="Label" parent="UI"]
-self_modulate = Color( 0, 0, 0, 1 )
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -323.0
-margin_top = 69.0
-margin_right = 340.0
-margin_bottom = 198.0
+margin_left = -471.0
+margin_top = 111.0
+margin_right = 479.0
+margin_bottom = 296.0
 theme = ExtResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 7 )
 text = "Tetroverse"
 align = 1
 valign = 1
@@ -81,20 +83,11 @@ margin_bottom = -200.0
 
 [node name="Start" parent="UI/ButtonContainer" instance=ExtResource( 1 )]
 margin_right = 256.0
-margin_bottom = 64.0
+margin_bottom = 70.8102
 rect_min_size = Vector2( 256, 64 )
-theme = ExtResource( 4 )
-stretch_mode = 4
 
-[node name="RichTextLabel" parent="UI/ButtonContainer/Start" index="0"]
-modulate = Color( 0, 0, 0, 1 )
-self_modulate = Color( 0, 0, 0, 1 )
-margin_left = -81.0
-margin_top = -27.5
-margin_right = 99.0
-margin_bottom = 87.5
-text = "Start
-"
+[node name="Start" parent="UI/ButtonContainer/Start" index="0"]
+margin_right = 256.0
 
 [node name="Volume" type="VSlider" parent="UI"]
 anchor_left = 1.0

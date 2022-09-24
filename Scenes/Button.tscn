@@ -1,25 +1,19 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Sprites/buttonSprite.png" type="Texture" id=1]
 [ext_resource path="res://UI.tres" type="Theme" id=3]
 
-[node name="Start" type="TextureButton"]
-margin_right = 128.0
-margin_bottom = 32.0
-texture_normal = ExtResource( 1 )
-expand = true
-
-[node name="RichTextLabel" type="Label" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -78.0
-margin_top = -32.5
-margin_right = 78.0
-margin_bottom = 32.5
+[node name="MarginContainer" type="MarginContainer"]
+margin_right = 220.0
+margin_bottom = 60.0
+size_flags_horizontal = 0
+size_flags_vertical = 2
 theme = ExtResource( 3 )
-text = "Button"
-align = 1
-valign = 1
-uppercase = true
+
+[node name="Start" type="Button" parent="."]
+margin_right = 242.09
+margin_bottom = 70.8102
+theme = ExtResource( 3 )
+text = "START"
+__meta__ = {
+"_editor_description_": ""
+}

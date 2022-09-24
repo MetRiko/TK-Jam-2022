@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Y2Mate.is - Infected Mushroom - Guitarmass-R_uS0aT0bG8-160k-1654088910253.mp3" type="AudioStream" id=1]
+[ext_resource path="res://Tetraverse_v2.wav" type="AudioStream" id=1]
 [ext_resource path="res://Scripts/AudioPlayer.gd" type="Script" id=2]
 [ext_resource path="res://Sounds/bounce2.wav" type="AudioStream" id=3]
 [ext_resource path="res://Sounds/ball lost.wav" type="AudioStream" id=4]
@@ -17,5 +17,4 @@ stream = ExtResource( 1 )
 autoplay = true
 
 [node name="EffectsAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 1 )
 autoplay = true
