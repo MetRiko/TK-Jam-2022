@@ -12,7 +12,7 @@ position = Vector2( 0, 282 )
 [node name="BottomLimit" type="Sprite" parent="."]
 modulate = Color( 1, 0, 0, 0.196078 )
 position = Vector2( 0, 282 )
-scale = Vector2( 25, 1.625 )
+scale = Vector2( 31, 1.625 )
 texture = ExtResource( 2 )
 centered = false
 

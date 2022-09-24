@@ -1,19 +1,25 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Ball.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/pixelFullSquare.png" type="Texture" id=2]
+[ext_resource path="res://Tetris/TetrisField.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 523, 8.5 )
+extents = Vector2( 523, 6.75001 )
 
 [node name="Level" type="Node2D"]
 
+[node name="TetrisField" parent="." instance=ExtResource( 3 )]
+position = Vector2( -246, -223 )
+
 [node name="Ball" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 125 )
+scale = Vector2( 0.8, 0.8 )
 
 [node name="Walls" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
-position = Vector2( 512, -1.5 )
+position = Vector2( 0, -145.5 )
 shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Walls/CollisionShape2D"]
@@ -22,7 +28,7 @@ scale = Vector2( 65.375, 1 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
-position = Vector2( 0, 512 )
+position = Vector2( -256, 368 )
 rotation = 1.5708
 shape = SubResource( 2 )
 
@@ -32,7 +38,7 @@ scale = Vector2( 65.375, 1 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls"]
-position = Vector2( 1024, 512 )
+position = Vector2( 255, 368 )
 rotation = 1.5708
 shape = SubResource( 2 )
 
@@ -40,3 +46,7 @@ shape = SubResource( 2 )
 position = Vector2( -3.76105e-05, 0 )
 scale = Vector2( 65.375, 1 )
 texture = ExtResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.5, 0.5 )

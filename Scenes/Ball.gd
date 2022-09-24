@@ -1,11 +1,11 @@
 extends KinematicBody2D
 
-var velocity = 3.0
+var velocity = 2.5
 var dirVec = Vector2.ZERO
 
 func castBall():
 	dirVec = Vector2(1,-1)
-	dirVec.x = dirVec.x * rand_range(-1,1) *0
+	dirVec.x = dirVec.x * rand_range(-1,1)*0.1
 
 func _physics_process(delta):
 	var collision = move_and_collide(dirVec*velocity)
