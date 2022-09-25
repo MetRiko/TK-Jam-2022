@@ -23,10 +23,11 @@ func _movement_update(delta):
 		velocity_vec = move_and_slide(velocity_vec, Vector2.ZERO)
 		if get_slide_count() > 0:
 			var coll = get_slide_collision(0)
-			if coll and coll.collider.is_in_group("ball"):
+			if coll and coll.collider.is_in_group("ball") and coll.collider.collidable:
 				var ball = coll.collider
 				ball.velocity = 5.0
 				ball.dirVec = direction
+				direction = -direction
 
 func _rotation_update(delta : float):
 	if Input.is_action_pressed("ui_right"):
