@@ -32,6 +32,7 @@ size = 32
 font_data = ExtResource( 6 )
 
 [node name="Level" type="Node2D"]
+position = Vector2( -2, 4 )
 script = ExtResource( 5 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
