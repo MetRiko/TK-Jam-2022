@@ -2,9 +2,9 @@ extends Node2D
 
 const standard_type = [0, preload("res://Balls/Ball.tscn")]
 const segment_types = {
-#	explosion = [1, preload("res://Balls/ExplosiveBall.tscn")],
+	explosion = [1, preload("res://Balls/ExplosiveBall.tscn")],
 	split = [2, preload("res://Balls/MultiBall.tscn")],
-#	ghost = [3, preload("res://Balls/GhostBall.tscn")],
+	ghost = [3, preload("res://Balls/GhostBall.tscn")],
 #	shooting = [4, preload("res://Balls/ShootingBall.tscn")],
 #	chain = [5, preload("res://Balls/ChainBall.tscn")],
 #	shotgun = [6, preload("res://Balls/ShotgunBall.tscn")],
