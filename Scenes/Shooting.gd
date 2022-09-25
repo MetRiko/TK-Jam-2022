@@ -8,6 +8,7 @@ func _shoot():
 		var front_segment = get_parent().body.get_child(0)
 		var ball = ball_scn.instance()
 		Game.addBall(ball)
+		Game.audioPlayer.playSound(0)
 		ball.dirVec = head.direction
 		ball.global_position = front_segment.global_position + head.direction * 15.0
 		ball.velocity = 5.0
