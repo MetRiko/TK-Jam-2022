@@ -17,7 +17,7 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 hframes = 10
-frame = 2
+frame = 5
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
