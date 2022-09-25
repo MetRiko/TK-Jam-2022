@@ -5,6 +5,9 @@ const segments_tex = preload("res://Snake/snake_segments.png")
 
 var segment_type = null
 
+func get_color():
+	return $Sprite.modulate
+
 func set_color(color : Color):
 	$Sprite.modulate = color
 
