@@ -23,7 +23,11 @@ func addBall(ball):
 	getLevel().addBall(ball)
 
 func die():
+	if dead:
+		return
 	ds.show()
+	getLevel().getSnake().snakeHead.alive = false
+	getLevel().getTetrisField().isMoving = false
 	var score = getLevel().getCounter().text
 	ds.get_child(2).text = score
 	if int(score) > int(highscore):
@@ -31,7 +35,7 @@ func die():
 	dead = true
 
 func _input(event):
-	if dead and event.is_action_pressed("ui_up"):
+	if dead and event is InputEventKey:
 		reset()
 
 
@@ -40,7 +44,7 @@ func reset():
 	getLevel().queue_free()
 	var lvl = levelPrefab.instance()
 	level = lvl
-	level.getCounter2().text = highscore
+	level.getCounter2().text = str(highscore)
 	var rt = get_tree().root.get_node("Root")
 	rt.add_child_below_node(rt.get_child(0), lvl)
 	dead = false

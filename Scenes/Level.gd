@@ -5,6 +5,9 @@ onready var balls = $Balls
 func getSnake():
 	return $Snake
 
+func getTetrisField():
+	return $TetrisField
+
 func addBall(ball):
 	balls.add_child(ball)
 

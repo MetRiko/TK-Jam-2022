@@ -4,6 +4,7 @@ const block_scene = preload("res://Tetris/TetrisBlock.tscn")
 const block_size := Vector2(16, 16)
 onready var blocks = $Blocks
 
+var isMoving = true
 var offset_y := 0.0
 var start_pos := Vector2()
 var height_level_per_column := [0, 0, 0, 0, 0, 0]
@@ -43,8 +44,9 @@ const blocks_groups = [
 ]
 
 func _physics_process(delta):
-	offset_y += 5.0 * delta
-	blocks.position.y = start_pos.y - offset_y
+	if isMoving:
+		offset_y += 5.0 * delta
+		blocks.position.y = start_pos.y - offset_y
 
 func _ready():
 	randomize()
