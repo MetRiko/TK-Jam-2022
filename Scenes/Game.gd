@@ -12,7 +12,7 @@ var dead = false
 var highscore = 0
 
 func _ready():
-	ds.hide()
+	reset()
 
 func addParticles(particles):
 	particleContainer.add_child(particles)
@@ -42,6 +42,7 @@ func reset():
 	ui.show()
 
 func start_game():
+	ui.hide()
 	var lvl = levelPrefab.instance()
 	level = lvl
 	level.getCounter2().text = str(highscore)
