@@ -20,3 +20,4 @@ func getCounter2():
 func _ready():
 	var score = getCounter2()
 	score = Game.highscore
+

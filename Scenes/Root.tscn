@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
+[ext_resource path="res://Scenes/UI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Level.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/ParticleContainer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/DeathScreen.tscn" type="PackedScene" id=4]
@@ -13,10 +14,14 @@
 [node name="ParticleContainer" parent="." instance=ExtResource( 3 )]
 
 [node name="DeathScreen" parent="." instance=ExtResource( 4 )]
-margin_right = 642.0
+margin_left = -2.0
+margin_right = 640.0
 margin_bottom = 370.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( -2, 4 )
 anchor_mode = 0
 current = true
 zoom = Vector2( 0.5, 0.5 )
+
+[node name="UI" parent="." instance=ExtResource( 1 )]

@@ -1,16 +1,18 @@
 extends Node2D
 
 const levelPrefab = preload("res://Scenes/Level.tscn")
+const transitionPrefab = preload("res://Scenes/ScreenTransition.tscn")
 
 onready var particleContainer = get_tree().root.get_node("Root/ParticleContainer")
 onready var level = get_tree().root.get_node("Root/Level")
 onready var ds = get_tree().root.get_node("Root/DeathScreen")
+onready var ui = get_tree().root.get_node("Root/UI")
 
 var dead = false
 var highscore = 0
 
 func _ready():
-	ds.hide()
+	reset()
 
 func addParticles(particles):
 	particleContainer.add_child(particles)
@@ -33,18 +35,18 @@ func die():
 		highscore = score
 	dead = true
 
-func _input(event):
-	if dead and event is InputEventKey:
-		reset()
-
-
 func reset():
 	ds.hide()
 	getLevel().queue_free()
+	ui.get_highscore_label().text = str(highscore)
+	ui.show()
+	
+func start_game():
 	var lvl = levelPrefab.instance()
 	level = lvl
 	level.getCounter2().text = str(highscore)
 	var rt = get_tree().root.get_node("Root")
 	rt.add_child_below_node(rt.get_child(0), lvl)
 	dead = false
+	ui.hide()
 	pass
