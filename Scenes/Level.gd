@@ -7,3 +7,10 @@ func addBall(ball):
 
 func getCounter():
 	return $Score
+
+func getCounter2():
+	return $Score2
+
+func _ready():
+	var score = getCounter2()
+	score = Game.highscore
