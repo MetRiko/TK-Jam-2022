@@ -33,7 +33,7 @@ onready var snakeHead = $SnakeHead
 onready var body = $Body
 
 func _ready():
-	for i in range(3):
+	for i in range(5):
 		_add_segment()
 
 func _input(event):

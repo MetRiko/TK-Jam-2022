@@ -105,7 +105,7 @@ func put_blocks_group(idx_x : int, start_height : int, blocks_idxes : Array) -> 
 	latest_block.update_variants()
 	
 	var chance = randf()
-	if chance < 0.2:
+	if chance < 0.15:
 		var bonuses = Game.getLevel().getSnake().segment_types.values()
 		var bonus = bonuses[randi() % bonuses.size()]
 		in_blocks[randi() % in_blocks.size()].add_bonus(bonus)
