@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Balls/Ball.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/pixelFullSquare.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Scenes/DeathTrigger.gd" type="Script" id=8]
 [ext_resource path="res://Scenes/SegmentsCounter.gd" type="Script" id=9]
 [ext_resource path="res://Scenes/Snake.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Sprites/black-grey-gradient-linear-1920x1080-c2-000000-808080-a-270-f-14.png" type="Texture" id=11]
 
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 320, 10 )
@@ -32,6 +33,12 @@ font_data = ExtResource( 6 )
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 5 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 641.0
+margin_bottom = 406.0
+texture = ExtResource( 11 )
+expand = true
 
 [node name="Snake" parent="." instance=ExtResource( 10 )]
 position = Vector2( 320, 128 )
