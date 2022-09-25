@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Sprites/block.png" type="Texture" id=1]
+[ext_resource path="res://Snake/snake_segments.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -19,6 +19,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
+hframes = 12
 
 [node name="CollisionDetector" type="Area2D" parent="."]
 collision_layer = 0

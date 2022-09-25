@@ -106,8 +106,9 @@ func put_blocks_group(idx_x : int, start_height : int, blocks_idxes : Array) -> 
 	
 	var chance = randf()
 	if chance < 0.2:
-		in_blocks[randi() % in_blocks.size()].add_bonus(null)
-	
+		var bonuses = Game.getLevel().getSnake().segment_types.values()
+		var bonus = bonuses[randi() % bonuses.size()]
+		in_blocks[randi() % in_blocks.size()].add_bonus(bonus)
 	
 func put_random_blocks_group_below():
 	if current_max_height * block_size.y > $BottomLimit.position.y + offset_y - start_pos.y:

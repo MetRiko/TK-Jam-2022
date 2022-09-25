@@ -1,12 +1,13 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scenes/Ball.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/pixelCircle.png" type="Texture" id=2]
+[ext_resource path="res://Balls/ExplosiveBall.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/fire_magic_ball.png" type="Texture" id=2]
+
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 8.0
 
-[node name="Ball" type="KinematicBody2D" groups=["ball"]]
+[node name="ExplosiveBall" type="KinematicBody2D"]
 position = Vector2( 520, 504 )
 collision_mask = 14
 script = ExtResource( 1 )

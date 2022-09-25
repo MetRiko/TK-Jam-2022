@@ -1,5 +1,17 @@
 extends Node2D
 
+const standard_type = [0, preload("res://Balls/Ball.tscn")]
+const segment_types = {
+	explosion = [1, preload("res://Balls/ExplosiveBall.tscn")],
+#	split = [2, preload("res://Balls/SplitBall.tscn")],
+#	ghost = [3, preload("res://Balls/GhostBall.tscn")],
+#	shooting = [4, preload("res://Balls/ShootingBall.tscn")],
+#	chain = [5, preload("res://Balls/ChainBall.tscn")],
+#	shotgun = [6, preload("res://Balls/ShotgunBall.tscn")],
+#	big = [7, preload("res://Balls/BigBall.tscn")],
+#	laser = [8, preload("res://Balls/LaserBall.tscn")],
+}
+
 class SegmentData:
 	var x: float
 	var y: float
@@ -13,7 +25,7 @@ var history: Dictionary = {}
 var frame_counter: int = 0
 
 var segments_gap := 25
-var speedMultiplier := 3
+var speedMultiplier := 2
 
 var segmentScene = preload("res://Scenes/Segment.tscn")
 
@@ -30,14 +42,19 @@ func _input(event):
 	if event.is_action_released("ui_up"):
 		speedMultiplier = 3
 
-func _add_segment():
+func _add_segment(segment_type = null):
+	if segment_type == null:
+		segment_type = standard_type
 	var segment = segmentScene.instance()
 	body.add_child(segment)
+	segment.set_segment_type(segment_type)
 	segment.global_position = Vector2(-1, -1) * 100.0
+	return segment
 	
 func _remove_front_segment():
 	var removed_segment = body.get_child(0)
 	snakeHead.global_position = removed_segment.global_position
+	snakeHead.apply_segment(removed_segment)
 #	snakeHead.direction = Vector2.LEFT.rotated(removed_segment.global_rotation)
 	removed_segment.queue_free()
 	body.remove_child(removed_segment)

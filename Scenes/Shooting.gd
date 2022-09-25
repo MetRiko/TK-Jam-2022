@@ -1,12 +1,10 @@
 extends Node
 
-const ball_scn = preload("res://Scenes/Ball.tscn")
-
 func _shoot():
 	if get_parent().body.get_child_count() > 0:
 		var head = get_parent().snakeHead
 		var front_segment = get_parent().body.get_child(0)
-		var ball = ball_scn.instance()
+		var ball = head.segment_type[1].instance()
 		Game.addBall(ball)
 		AudioPlayer.playSound(0)
 		ball.dirVec = head.direction

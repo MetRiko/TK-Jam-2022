@@ -1,14 +1,31 @@
-extends KinematicBody2D
+extends SnakeSegment
+
+const filled_segments_tex = preload("res://Snake/filled_segments.png")
 
 var direction: Vector2 = Vector2.DOWN
 var velocity: int = 30
-var rotationAngle: float = deg2rad(4)
+var rotationAngle: float = deg2rad(3.5)
 var forward_vector = Vector2(0,1)
 var the_object = self
 
 var alive := true
 
+func set_sprite_from_segment_type():
+	$Sprite.texture = filled_segments_tex
+	$Sprite.hframes = 12
+	if segment_type == null:
+		$Sprite.frame = 0
+	else:
+		$Sprite.frame = segment_type[0]
+		
+func apply_segment(segment):
+	$Sprite.modulate = segment.get_node("Sprite").modulate
+	segment_type = segment.segment_type
+	set_sprite_from_segment_type()
+
 func _ready():
+	set_segment_type(get_parent().standard_type)
+	set_sprite_from_segment_type()
 	$CollisionDetector.connect("body_entered", self, "_on_body_entered")
 
 func _on_body_entered(body):

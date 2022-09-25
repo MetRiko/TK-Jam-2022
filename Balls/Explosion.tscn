@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scenes/Explosion.gd" type="Script" id=1]
+[ext_resource path="res://Balls/Explosion.gd" type="Script" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 24.0
+radius = 28.0
 
 [node name="ExplosionArea" type="Area2D"]
 collision_layer = 32

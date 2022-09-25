@@ -34,7 +34,7 @@ func die():
 	dead = true
 
 func _input(event):
-	if dead and event is InputEventKey:
+	if dead and event is InputEventKey and event.pressed:
 		reset()
 
 

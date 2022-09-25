@@ -51,6 +51,12 @@ func destroy():
 	part.global_position = global_position + Vector2(8,8)
 	part.modulate = Color.from_hsv(blockColor.h, 0.8, 1.0, 1.0)
 	part.emitting = true
+	if bonus != null:
+		var seg = Game.getLevel().getSnake()._add_segment(bonus)
+		seg.set_color(blockColor)
+		for block in blocks:
+			if block != null:
+				block.change_color(Color.from_hsv(blockColor.h, 0.5, 0.45, 1.0))
 	Game.getLevel().get_node("Segments").onDestroyBlock()
 	blocks_offsets.erase(_hash_idx(pos_offset))
 	blocks[block_id] = null

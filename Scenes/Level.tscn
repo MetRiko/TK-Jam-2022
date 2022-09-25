@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://Scenes/Ball.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Balls/Ball.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/pixelFullSquare.png" type="Texture" id=2]
 [ext_resource path="res://Tetris/TetrisField.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Score.gd" type="Script" id=4]
@@ -18,7 +18,7 @@ extents = Vector2( 320, 10 )
 extents = Vector2( 316, 10 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 64, 220 )
+extents = Vector2( 64, 232 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 320, 16 )
@@ -46,13 +46,14 @@ position = Vector2( 0, 125 )
 scale = Vector2( 0.8, 0.8 )
 
 [node name="DeathTrigger" type="Area2D" parent="."]
-position = Vector2( 320, -40 )
+position = Vector2( 320, -72 )
 script = ExtResource( 8 )
 
 [node name="DeathCollider" type="CollisionShape2D" parent="DeathTrigger"]
 shape = SubResource( 8 )
 
 [node name="BallsDestroyer" type="StaticBody2D" parent="." groups=["balls_destroyer"]]
+position = Vector2( 0, -32 )
 collision_layer = 2
 collision_mask = 0
 
@@ -78,11 +79,11 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
-position = Vector2( 64, 180 )
+position = Vector2( 64, 168 )
 shape = SubResource( 5 )
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="Walls"]
-position = Vector2( 576, 180 )
+position = Vector2( 576, 168 )
 shape = SubResource( 5 )
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls"]
