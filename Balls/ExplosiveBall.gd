@@ -10,7 +10,7 @@ const particles = preload("res://Balls/Explosion.tscn")
 #	dirVec.x = dirVec.x * rand_range(-1,1)*0.1
 
 func set_color(color):
-	$Sprite.modulate.color
+	$Sprite.modulate = color
 
 func _physics_process(delta):
 	var collision = move_and_collide(dirVec*velocity)
