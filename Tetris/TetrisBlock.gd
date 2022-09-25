@@ -52,6 +52,7 @@ func destroy():
 	else:
 		 Game.getLevel().getCounter().addPoints(10)
 	Game.addParticles(part)
+	AudioPlayer.playSound(2)
 	part.global_position = global_position + Vector2(8,8)
 	part.modulate = Color.from_hsv(blockColor.h, 0.8, 1.0, 1.0)
 	part.emitting = true
