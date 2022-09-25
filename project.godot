@@ -8,6 +8,22 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "BallBase",
+"language": "GDScript",
+"path": "res://Balls/BallBase.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "SnakeSegment",
+"language": "GDScript",
+"path": "res://Scenes/Segment.gd"
+} ]
+_global_script_class_icons={
+"BallBase": "",
+"SnakeSegment": ""
+}
+
 [application]
 
 config/name="Tk- Jam- 2022"

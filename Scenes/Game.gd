@@ -12,7 +12,7 @@ var dead = false
 var highscore = 0
 
 func _ready():
-	reset()
+	ds.hide()
 
 func addParticles(particles):
 	particleContainer.add_child(particles)
@@ -40,7 +40,7 @@ func reset():
 	getLevel().queue_free()
 	ui.get_highscore_label().text = str(highscore)
 	ui.show()
-	
+
 func start_game():
 	var lvl = levelPrefab.instance()
 	level = lvl
@@ -48,5 +48,4 @@ func start_game():
 	var rt = get_tree().root.get_node("Root")
 	rt.add_child_below_node(rt.get_child(0), lvl)
 	dead = false
-	ui.hide()
 	pass

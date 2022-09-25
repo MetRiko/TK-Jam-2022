@@ -51,18 +51,24 @@ func destroy():
 	part.global_position = global_position + Vector2(8,8)
 	part.modulate = Color.from_hsv(blockColor.h, 0.8, 1.0, 1.0)
 	part.emitting = true
+	if bonus != null:
+		var seg = Game.getLevel().getSnake()._add_segment(bonus)
+		seg.set_color(blockColor)
+		for block in blocks:
+			if block != null:
+				block.change_color(Color.from_hsv(blockColor.h, 0.5, 0.45, 1.0))
 	Game.getLevel().get_node("Segments").onDestroyBlock()
 	blocks_offsets.erase(_hash_idx(pos_offset))
 	blocks[block_id] = null
 	update_variants()
 	queue_free()
 
-func _input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
-			var rect = Rect2(global_position, Vector2.ONE * 16)
-			if rect.has_point(get_global_mouse_position()):
-				destroy()
+#func _input(event):
+#	if event is InputEventMouseButton:
+#		if event.button_index == BUTTON_LEFT and event.pressed:
+#			var rect = Rect2(global_position, Vector2.ONE * 16)
+#			if rect.has_point(get_global_mouse_position()):
+#				destroy()
 	
 func check_variant_id() -> int:
 	var up := int(blocks_offsets.has(_hash_idx(pos_offset + Vector2.UP))) * 1
