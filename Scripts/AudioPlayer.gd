@@ -13,9 +13,7 @@ func changeVolume(volume):
 	volume = volume*100/maxVol
 	$AudioStreamPlayer.volume_db = volume
 
-func playSound(soundName):
-	for streams in streamList:
-		if(soundName == streams.resource_name):
-			currStream = streams
+func playSound(soundIdx):
+	currStream = streamList[soundIdx]
 	$EffectsAudioStreamPlayer.stream = currStream
 	$EffectsAudioStreamPlayer.play()

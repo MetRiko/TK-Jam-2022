@@ -50,9 +50,10 @@ func _remove_front_segment():
 #	if Input.is_action_pressed("ui_up"):
 
 func _physics_process(delta):
-	snakeHead._rotation_update(delta)
-	for i in range(speedMultiplier):
-		_single_update(delta)
+	if snakeHead.alive:
+		snakeHead._rotation_update(delta)
+		for i in range(speedMultiplier):
+			_single_update(delta)
 
 func _single_update(delta):
 	snakeHead._movement_update(delta)

@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/snake bounce.wav-6989b3f4be155799225a9d1ee37b108e.sample"
+path="res://.import/newBall.wav-010e3fc87fd6bc5398714663a5dcd7b4.sample"
 
 [deps]
 
-source_file="res://Sounds/snake bounce.wav"
-dest_files=[ "res://.import/snake bounce.wav-6989b3f4be155799225a9d1ee37b108e.sample" ]
+source_file="res://Sounds/newBall.wav"
+dest_files=[ "res://.import/newBall.wav-010e3fc87fd6bc5398714663a5dcd7b4.sample" ]
 
 [params]
 

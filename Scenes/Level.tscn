@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scenes/Ball.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/pixelFullSquare.png" type="Texture" id=2]
@@ -7,6 +7,12 @@
 [ext_resource path="res://Scenes/Level.gd" type="Script" id=5]
 [ext_resource path="res://Vermin Vibes 1989.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://UI.tres" type="Theme" id=7]
+[ext_resource path="res://Scenes/DeathTrigger.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/SegmentsCounter.gd" type="Script" id=9]
+[ext_resource path="res://Scenes/Snake.tscn" type="PackedScene" id=10]
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 320, 10 )
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 316, 10 )
@@ -20,8 +26,15 @@ extents = Vector2( 320, 16 )
 [sub_resource type="DynamicFont" id=7]
 font_data = ExtResource( 6 )
 
+[sub_resource type="DynamicFont" id=9]
+size = 32
+font_data = ExtResource( 6 )
+
 [node name="Level" type="Node2D"]
 script = ExtResource( 5 )
+
+[node name="Snake" parent="." instance=ExtResource( 10 )]
+position = Vector2( 320, 128 )
 
 [node name="TetrisField" parent="." instance=ExtResource( 3 )]
 position = Vector2( 128, 0 )
@@ -31,6 +44,13 @@ position = Vector2( 128, 0 )
 [node name="Ball" parent="Balls" instance=ExtResource( 1 )]
 position = Vector2( 0, 125 )
 scale = Vector2( 0.8, 0.8 )
+
+[node name="DeathTrigger" type="Area2D" parent="."]
+position = Vector2( 320, -40 )
+script = ExtResource( 8 )
+
+[node name="DeathCollider" type="CollisionShape2D" parent="DeathTrigger"]
+shape = SubResource( 8 )
 
 [node name="BallsDestroyer" type="StaticBody2D" parent="." groups=["balls_destroyer"]]
 collision_layer = 2
@@ -69,11 +89,6 @@ shape = SubResource( 5 )
 position = Vector2( 320, 384 )
 shape = SubResource( 4 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
-current = true
-zoom = Vector2( 0.5, 0.5 )
-
 [node name="Label" type="Label" parent="."]
 margin_left = 520.0
 margin_top = 144.0
@@ -95,3 +110,49 @@ text = "999999999999"
 align = 1
 valign = 1
 script = ExtResource( 4 )
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 520.0
+margin_top = 64.0
+margin_right = 632.0
+margin_bottom = 99.0
+theme = ExtResource( 7 )
+custom_fonts/font = SubResource( 7 )
+text = "highScore"
+align = 1
+
+[node name="Score2" type="Label" parent="."]
+margin_left = 520.0
+margin_top = 80.0
+margin_right = 632.0
+margin_bottom = 94.0
+theme = ExtResource( 7 )
+custom_fonts/font = SubResource( 7 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="."]
+margin_left = 8.0
+margin_top = 64.0
+margin_right = 120.0
+margin_bottom = 99.0
+theme = ExtResource( 7 )
+custom_fonts/font = SubResource( 7 )
+text = "Blocks till next segment"
+align = 1
+autowrap = true
+
+[node name="Segments" type="Label" parent="."]
+margin_left = 8.0
+margin_top = 104.0
+margin_right = 120.0
+margin_bottom = 118.0
+theme = ExtResource( 7 )
+custom_fonts/font = SubResource( 9 )
+text = "6"
+align = 1
+valign = 1
+script = ExtResource( 9 )
+
+[connection signal="body_entered" from="DeathTrigger" to="DeathTrigger" method="_on_DeathTrigger_body_entered"]
