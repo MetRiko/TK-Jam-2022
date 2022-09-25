@@ -8,8 +8,8 @@ func _shoot():
 		var front_segment = get_parent().body.get_child(0)
 		var ball = ball_scn.instance()
 		Game.addBall(ball)
-		ball.dirVec = Vector2.UP.rotated(head.global_rotation)
-		ball.global_position = front_segment.global_position - ball.dirVec * 15.0
+		ball.dirVec = head.direction
+		ball.global_position = front_segment.global_position + head.direction * 15.0
 		ball.velocity = 5.0
 		get_parent()._remove_front_segment()
 

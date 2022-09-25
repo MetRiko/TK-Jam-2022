@@ -7,6 +7,13 @@ var dirVec = Vector2.ZERO
 #	dirVec = Vector2(1,1)
 #	dirVec.x = dirVec.x * rand_range(-1,1)*0.1
 
+
+var collidable := false
+
+func _ready():
+	yield(get_tree().create_timer(0.08), "timeout")
+	collidable = true
+	
 func bounce(normal : Vector2):
 	dirVec = dirVec.bounce(normal)
 
