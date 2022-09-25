@@ -86,7 +86,8 @@ func get_blocks_group_fit_height(idx_x : int, blocks_idxes : Array) -> int:
 	return start_height
 
 func put_blocks_group(idx_x : int, start_height : int, blocks_idxes : Array) -> void:
-	var color = Color(randf() * 0.5 + 0.5, randf() * 0.5 + 0.5, randf() * 0.5 + 0.5, 1.0)
+#	var color = Color(randf() * 0.5 + 0.5, randf() * 0.5 + 0.5, randf() * 0.5 + 0.5, 1.0)
+	var color = Color.from_hsv(randf(), 0.5, 0.45, 1.0)
 	var in_blocks = []
 	var in_offsets = {}
 	var latest_block = null

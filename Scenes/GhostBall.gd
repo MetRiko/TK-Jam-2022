@@ -7,13 +7,6 @@ var dirVec = Vector2.ZERO
 #	dirVec = Vector2(1,1)
 #	dirVec.x = dirVec.x * rand_range(-1,1)*0.1
 
-
-var collidable := false
-
-func _ready():
-	yield(get_tree().create_timer(0.08), "timeout")
-	collidable = true
-	
 func bounce(normal : Vector2):
 	dirVec = dirVec.bounce(normal)
 
@@ -23,11 +16,21 @@ func _physics_process(delta):
 		if collision.collider.is_in_group("balls_destroyer"):
 			queue_free()
 			return
-		var reflect = collision.remainder.bounce(collision.normal)
-		bounce(collision.normal)
-		move_and_collide(reflect, false)
+		if $IsntGhastly.time_left > 0:
+			var reflect = collision.remainder.bounce(collision.normal)
+			bounce(collision.normal)
+			move_and_collide(reflect, false)
 		if collision.collider.is_in_group("snake"):
 			velocity = 5.0
 		if collision.collider.name.match('*TetrisBlock*'):
 			collision.collider.destroy()
 			velocity = 1.5
+
+
+func _on_IsntGhastly_timeout():
+	print("isGhastly")
+	$IsGhastly.start(2.0)
+
+func _on_IsGhastly_timeout():
+	print("isntGhastly")
+	$IsntGhastly.start(2.0)

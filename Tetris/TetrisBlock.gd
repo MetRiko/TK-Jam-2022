@@ -22,8 +22,13 @@ func setup(pos_offset : Vector2, in_blocks_offsets : Dictionary, in_blocks : Arr
 	in_blocks_offsets[_hash_idx(pos_offset)] = true
 	blocks = in_blocks
 	in_blocks.append(self)
-	
+
 func add_bonus(bonus):
+#	var color = Color(randf() * 0.5 + 0.5, randf() * 0.5 + 0.5, randf() * 0.5 + 0.5, 1.0)
+	var color = Color.from_hsv(randf(), 0.8, 1.0, 1.0)
+	for block in blocks:
+		if block:
+			block.change_color(color)
 	self.bonus = bonus
 	$ShinyEffect.visible = true
 	$Anim.play("shiny_effect")
@@ -43,7 +48,7 @@ func destroy():
 		 Game.getLevel().getCounter().addPoints(10)
 	Game.addParticles(part)
 	part.global_position = global_position + Vector2(8,8)
-	part.modulate = blockColor
+	part.modulate = Color.from_hsv(blockColor.h, 0.8, 1.0, 1.0)
 	part.emitting = true
 	blocks_offsets.erase(_hash_idx(pos_offset))
 	blocks[block_id] = null
