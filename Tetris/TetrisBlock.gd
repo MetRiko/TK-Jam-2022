@@ -16,6 +16,10 @@ var bonus = null
 func _ready():
 	$ShinyEffect.visible = false
 
+func _process(delta):
+	if global_position.y < -72:
+		destroy()
+
 func setup(pos_offset : Vector2, in_blocks_offsets : Dictionary, in_blocks : Array) -> void:
 	block_id = in_blocks.size()
 	self.pos_offset = pos_offset
