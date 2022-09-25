@@ -1,6 +1,6 @@
 extends Node2D
 
-var levelInstance = preload("res://Scenes/Level.tscn").instance()
+const levelPrefab = preload("res://Scenes/Level.tscn")
 
 onready var particleContainer = get_tree().root.get_node("Root/ParticleContainer")
 onready var level = get_tree().root.get_node("Root/Level")
@@ -17,26 +17,31 @@ func addParticles(particles):
 	particleContainer.add_child(particles)
 
 func getLevel():
-	return get_tree().root.get_node("Root/Level")
+	return level
 
 func addBall(ball):
 	getLevel().addBall(ball)
 
 func die():
 	ds.show()
-	var score = level.getCounter().text
+	var score = getLevel().getCounter().text
 	ds.get_child(2).text = score
 	if int(score) > int(highscore):
 		highscore = score
-		level.getCounter2().text = score
 	dead = true
 
 func _input(event):
-	if dead and event is InputEventKey:
+	if dead and event.is_action_pressed("ui_up"):
 		reset()
 
 
 func reset():
 	ds.hide()
-	#clear previous level
+	getLevel().queue_free()
+	var lvl = levelPrefab.instance()
+	level = lvl
+	level.getCounter2().text = highscore
+	var rt = get_tree().root.get_node("Root")
+	rt.add_child_below_node(rt.get_child(0), lvl)
+	dead = false
 	pass

@@ -15,7 +15,6 @@ var bonus = null
 
 func _ready():
 	$ShinyEffect.visible = false
-	connect("destroy_block",Game.level.get_node("Segments"),"onDestroyBlock")
 
 func setup(pos_offset : Vector2, in_blocks_offsets : Dictionary, in_blocks : Array) -> void:
 	block_id = in_blocks.size()
@@ -52,7 +51,7 @@ func destroy():
 	part.global_position = global_position + Vector2(8,8)
 	part.modulate = Color.from_hsv(blockColor.h, 0.8, 1.0, 1.0)
 	part.emitting = true
-	emit_signal("destroy_block")
+	Game.getLevel().get_node("Segments").onDestroyBlock()
 	blocks_offsets.erase(_hash_idx(pos_offset))
 	blocks[block_id] = null
 	update_variants()

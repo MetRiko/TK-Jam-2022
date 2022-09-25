@@ -2,6 +2,9 @@ extends Node2D
 
 onready var balls = $Balls
 
+func getSnake():
+	return $Snake
+
 func addBall(ball):
 	balls.add_child(ball)
 

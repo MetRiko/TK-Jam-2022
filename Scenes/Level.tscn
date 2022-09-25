@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/Ball.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/pixelFullSquare.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://UI.tres" type="Theme" id=7]
 [ext_resource path="res://Scenes/DeathTrigger.gd" type="Script" id=8]
 [ext_resource path="res://Scenes/SegmentsCounter.gd" type="Script" id=9]
+[ext_resource path="res://Scenes/Snake.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 316, 10 )
@@ -27,6 +28,9 @@ extents = Vector2( 320, 10 )
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 5 )
+
+[node name="Snake" parent="." instance=ExtResource( 10 )]
+position = Vector2( 320, 128 )
 
 [node name="TetrisField" parent="." instance=ExtResource( 3 )]
 position = Vector2( 128, 0 )
@@ -73,11 +77,6 @@ shape = SubResource( 5 )
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 320, 384 )
 shape = SubResource( 4 )
-
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
-current = true
-zoom = Vector2( 0.5, 0.5 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = 520.0
@@ -146,7 +145,7 @@ valign = 1
 script = ExtResource( 9 )
 
 [node name="DeathTrigger" type="Area2D" parent="."]
-position = Vector2( 320, -8 )
+position = Vector2( 320, -24 )
 script = ExtResource( 8 )
 
 [node name="DeathCollider" type="CollisionShape2D" parent="DeathTrigger"]

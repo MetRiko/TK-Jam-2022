@@ -1,25 +1,25 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scenes/Snake.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/AudioPlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Level.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/ParticleContainer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/DeathScreen.tscn" type="PackedScene" id=4]
 
 [node name="Root" type="Node2D"]
-position = Vector2( 14, 14 )
+
+[node name="LevelPos" type="Node" parent="."]
 
 [node name="Level" parent="." instance=ExtResource( 2 )]
-position = Vector2( 182, 109 )
-
-[node name="Snake" parent="." instance=ExtResource( 1 )]
-position = Vector2( 504, 164 )
 
 [node name="ParticleContainer" parent="." instance=ExtResource( 3 )]
 
 [node name="DeathScreen" parent="." instance=ExtResource( 4 )]
-margin_left = 181.0
-margin_top = 108.0
-margin_right = 823.0
-margin_bottom = 478.0
+margin_right = 642.0
+margin_bottom = 370.0
 
-[editable path="Level"]
+[node name="AudioPlayer" parent="." instance=ExtResource( 1 )]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+zoom = Vector2( 0.5, 0.5 )
