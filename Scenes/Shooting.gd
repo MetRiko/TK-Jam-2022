@@ -5,6 +5,7 @@ func _shoot():
 		var head = get_parent().snakeHead
 		var front_segment = get_parent().body.get_child(0)
 		var ball = head.segment_type[1].instance()
+		ball.set_color(head.get_color())
 		Game.addBall(ball)
 		AudioPlayer.playSound(0)
 		ball.dirVec = head.direction
@@ -14,7 +15,5 @@ func _shoot():
 
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
-		get_parent()._add_segment()
-	if event.is_action_pressed("ui_down"):
 		_shoot()
 		

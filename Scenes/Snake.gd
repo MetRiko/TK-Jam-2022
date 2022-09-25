@@ -3,8 +3,8 @@ extends Node2D
 const standard_type = [0, preload("res://Balls/Ball.tscn")]
 const segment_types = {
 	explosion = [1, preload("res://Balls/ExplosiveBall.tscn")],
-#	split = [2, preload("res://Balls/SplitBall.tscn")],
-#	ghost = [3, preload("res://Balls/GhostBall.tscn")],
+	split = [2, preload("res://Balls/MultiBall.tscn")],
+	ghost = [3, preload("res://Balls/GhostBall.tscn")],
 #	shooting = [4, preload("res://Balls/ShootingBall.tscn")],
 #	chain = [5, preload("res://Balls/ChainBall.tscn")],
 #	shotgun = [6, preload("res://Balls/ShotgunBall.tscn")],
@@ -37,6 +37,8 @@ func _ready():
 		_add_segment()
 
 func _input(event):
+	if event.is_action_pressed("ui_down"):
+		_add_segment()
 	if event.is_action_pressed("ui_up"):
 		speedMultiplier = 6
 	if event.is_action_released("ui_up"):

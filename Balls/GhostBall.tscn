@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Balls/ExplosiveBall.gd" type="Script" id=1]
+[ext_resource path="res://Balls/GhostBall.gd" type="Script" id=1]
 [ext_resource path="res://Balls/balls.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 8.0
+radius = 7.0
 
-[node name="ExplosiveBall" type="KinematicBody2D"]
+[node name="GhostBall" type="KinematicBody2D" groups=["ball"]]
 position = Vector2( 520, 504 )
 collision_mask = 14
 script = ExtResource( 1 )
@@ -17,4 +17,8 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 hframes = 10
-frame = 1
+frame = 3
+
+[node name="GhastTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true

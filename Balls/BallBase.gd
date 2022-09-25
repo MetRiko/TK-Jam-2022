@@ -21,6 +21,9 @@ func _on_any_collision(collision : KinematicCollision2D):
 	move_and_collide(reflect, false)
 	
 #############
+
+func set_color(color):
+	$Sprite.modulate = color
 	
 func _ready():
 	yield(get_tree().create_timer(0.08), "timeout")
