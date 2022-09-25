@@ -63,12 +63,12 @@ func destroy():
 	update_variants()
 	queue_free()
 
-func _input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
-			var rect = Rect2(global_position, Vector2.ONE * 16)
-			if rect.has_point(get_global_mouse_position()):
-				destroy()
+#func _input(event):
+#	if event is InputEventMouseButton:
+#		if event.button_index == BUTTON_LEFT and event.pressed:
+#			var rect = Rect2(global_position, Vector2.ONE * 16)
+#			if rect.has_point(get_global_mouse_position()):
+#				destroy()
 	
 func check_variant_id() -> int:
 	var up := int(blocks_offsets.has(_hash_idx(pos_offset + Vector2.UP))) * 1
