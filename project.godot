@@ -19,6 +19,7 @@ config/icon="res://Sprites/icon.png"
 AudioPlayer="*res://Scenes/AudioPlayer.tscn"
 Game="*res://Scenes/Game.gd"
 ParticleContainer="*res://Scenes/ParticleContainer.tscn"
+ScreenTransitionManager="*res://Scenes/ScreenTransitionManager.tscn"
 
 [display]
 
