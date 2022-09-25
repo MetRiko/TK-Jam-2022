@@ -21,9 +21,9 @@ func _movement_update(delta):
 	if alive:
 		var velocity_vec: Vector2 = get_linear_velocity()
 		velocity_vec = move_and_slide(velocity_vec, Vector2.ZERO)
-		var coll = get_slide_collision(0)
-		if coll:
-			if coll.collider.is_in_group("ball"):
+		if get_slide_count() > 0:
+			var coll = get_slide_collision(0)
+			if coll and coll.collider.is_in_group("ball"):
 				var ball = coll.collider
 				ball.velocity = 5.0
 				ball.dirVec = direction
