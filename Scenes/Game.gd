@@ -4,7 +4,6 @@ const levelPrefab = preload("res://Scenes/Level.tscn")
 
 onready var particleContainer = get_tree().root.get_node("Root/ParticleContainer")
 onready var level = get_tree().root.get_node("Root/Level")
-onready var audioPlayer = get_tree().root.get_node("Root/AudioPlayer")
 onready var ds = get_tree().root.get_node("Root/DeathScreen")
 
 var dead = false

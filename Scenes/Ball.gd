@@ -21,7 +21,7 @@ func _physics_process(delta):
 	var collision = move_and_collide(dirVec*velocity)
 	if collision:
 		if collision.collider.is_in_group("balls_destroyer"):
-			Game.audioPlayer.playSound(3)
+			AudioPlayer.playSound(3)
 			queue_free()
 			return
 		var reflect = collision.remainder.bounce(collision.normal)
@@ -29,7 +29,7 @@ func _physics_process(delta):
 		move_and_collide(reflect, false)
 		if collision.collider.is_in_group("snake"):
 			randomize()
-			Game.audioPlayer.playSound(int(rand_range(1,2)))
+			AudioPlayer.playSound(int(rand_range(1,2)))
 			velocity = 5.0
 		if collision.collider.name.match('*TetrisBlock*'):
 			collision.collider.destroy()
